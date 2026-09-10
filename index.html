@@ -1,0 +1,1196 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Catálogo de Joyería</title>
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiQ2F0w6Fsb2dvIGRlIEpveWVyw61hIiwic2hvcnRfbmFtZSI6IkNhdMOhbG9nbyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjRURFQUUyIiwidGhlbWVfY29sb3IiOiIjOUM3QTNDIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgNTEyIDUxMiclM0UlM0NyZWN0IHdpZHRoPSc1MTInIGhlaWdodD0nNTEyJyByeD0nOTYnIGZpbGw9JyUyM0VERUFFMicvJTNFJTNDdGV4dCB4PSc1MCUyNScgeT0nNTglMjUnIGZvbnQtc2l6ZT0nMzAwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBkb21pbmFudC1iYXNlbGluZT0nbWlkZGxlJyUzRSVGMCU5RiU5MiU4RCUzQy90ZXh0JTNFJTNDL3N2ZyUzRSIsInNpemVzIjoiNTEyeDUxMiIsInR5cGUiOiJpbWFnZS9zdmcreG1sIiwicHVycG9zZSI6ImFueSBtYXNrYWJsZSJ9XX0K">
+<meta name="theme-color" content="#9C7A3C">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%23EDEAE2'/%3E%3Ctext x='50%25' y='58%25' font-size='300' text-anchor='middle' dominant-baseline='middle'%3E%F0%9F%92%8D%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --bg:#EDEAE2;
+    --surface:#FFFFFF;
+    --surface-2:#F6F3EC;
+    --text:#262220;
+    --text-muted:#6E655A;
+    --border:#DEDACE;
+    --accent:#9C7A3C;
+    --accent-strong:#7C5F2C;
+    --accent-ink:#FFFFFF;
+    --accent-soft:#EFE3C6;
+    --danger:#B3462C;
+    --danger-soft:#F3DED6;
+    --shadow: 0 1px 2px rgba(38,34,32,.07), 0 10px 28px rgba(38,34,32,.09);
+    --cat-cadenas:#9C7A3C;
+    --cat-pulseras:#A3607A;
+    --cat-grabados:#4F708A;
+    --cat-personalizados:#5C7F58;
+    --cat-rosarios:#74557C;
+    --radius-s:8px;
+    --radius-m:14px;
+    --radius-l:20px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#171310;
+      --surface:#211C17;
+      --surface-2:#2A241D;
+      --text:#EEE6D9;
+      --text-muted:#AC9F8E;
+      --border:#3A3226;
+      --accent:#CDA75E;
+      --accent-strong:#E4C083;
+      --accent-ink:#171310;
+      --accent-soft:#3B331F;
+      --danger:#D97A5B;
+      --danger-soft:#3B241C;
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 28px rgba(0,0,0,.4);
+      --cat-cadenas:#D2AD68;
+      --cat-pulseras:#CE93AA;
+      --cat-grabados:#8FB0CB;
+      --cat-personalizados:#95BB8E;
+      --cat-rosarios:#B392BC;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#171310;
+    --surface:#211C17;
+    --surface-2:#2A241D;
+    --text:#EEE6D9;
+    --text-muted:#AC9F8E;
+    --border:#3A3226;
+    --accent:#CDA75E;
+    --accent-strong:#E4C083;
+    --accent-ink:#171310;
+    --accent-soft:#3B331F;
+    --danger:#D97A5B;
+    --danger-soft:#3B241C;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 28px rgba(0,0,0,.4);
+    --cat-cadenas:#D2AD68;
+    --cat-pulseras:#CE93AA;
+    --cat-grabados:#8FB0CB;
+    --cat-personalizados:#95BB8E;
+    --cat-rosarios:#B392BC;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Work Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Fraunces', Georgia, serif; text-wrap:balance; margin:0;}
+  button{font-family:inherit;}
+  input,select,textarea{font-family:inherit; font-size:inherit; color:inherit;}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+  #app{
+    max-width:1120px;
+    margin:0 auto;
+    padding:20px 20px 64px;
+  }
+
+  /* ---------- header ---------- */
+  .topbar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    align-items:flex-start;
+    justify-content:space-between;
+    padding-block:8px 20px;
+  }
+  .brand-block{min-width:220px; flex:1 1 260px;}
+  .brand-name-input{
+    font-family:'Fraunces', Georgia, serif;
+    font-size:1.9rem;
+    font-weight:600;
+    background:transparent;
+    border:1px solid transparent;
+    border-radius:var(--radius-s);
+    padding:2px 6px;
+    margin-left:-6px;
+    color:var(--text);
+    max-width:100%;
+  }
+  .brand-name-input:hover, .brand-name-input:focus{
+    border-color:var(--border);
+    background:var(--surface);
+  }
+  .stats-line{
+    margin-top:6px;
+    color:var(--text-muted);
+    font-size:.9rem;
+    font-variant-numeric:tabular-nums;
+  }
+  .contact-line{
+    margin-top:4px;
+    color:var(--text-muted);
+    font-size:.85rem;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .fallback-banner{
+    margin-top:8px;
+    font-size:.82rem;
+    color:var(--danger);
+    background:var(--danger-soft);
+    border-radius:var(--radius-s);
+    padding:6px 10px;
+    display:inline-block;
+  }
+  .topbar-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:flex-start;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    border-radius:999px;
+    padding:10px 16px;
+    font-size:.92rem;
+    font-weight:600;
+    border:1px solid var(--border);
+    background:var(--surface);
+    color:var(--text);
+    cursor:pointer;
+    white-space:nowrap;
+    transition:transform .08s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:hover{border-color:var(--accent);}
+  .btn:active{transform:scale(.97);}
+  .btn-primary{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:var(--accent-ink);
+  }
+  .btn-primary:hover{background:var(--accent-strong); border-color:var(--accent-strong);}
+  .btn-ghost{background:transparent;}
+  .btn:disabled{opacity:.5; cursor:not-allowed;}
+  .btn-icon{
+    width:34px; height:34px; padding:0; justify-content:center;
+    border-radius:var(--radius-s);
+  }
+
+  /* ---------- filter pills ---------- */
+  .filters{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    padding-block:4px 22px;
+  }
+  .pill{
+    border:1px solid var(--border);
+    background:var(--surface);
+    color:var(--text-muted);
+    border-radius:999px;
+    padding:7px 14px;
+    font-size:.85rem;
+    font-weight:600;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .pill .dot{width:8px; height:8px; border-radius:50%; background:var(--dot,var(--text-muted));}
+  .pill.active{
+    background:var(--accent-soft);
+    border-color:var(--accent);
+    color:var(--text);
+  }
+  .pill .count{font-variant-numeric:tabular-nums; opacity:.75;}
+
+  /* ---------- grid ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(228px, 1fr));
+    gap:16px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-l);
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    display:flex;
+    flex-direction:column;
+  }
+  .card-photo{
+    position:relative;
+    aspect-ratio:1/1;
+    background:var(--surface-2);
+    overflow:hidden;
+  }
+  .card-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+  .card-photo .no-photo{
+    width:100%; height:100%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--text-muted);
+    font-size:2rem;
+  }
+  .badge{
+    position:absolute; top:10px; left:10px;
+    font-size:.7rem; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
+    padding:4px 9px; border-radius:999px;
+    background:var(--catcolor); color:#fff;
+    box-shadow:0 2px 6px rgba(0,0,0,.25);
+  }
+  .badge-agotado{
+    position:absolute; top:10px; right:10px;
+    font-size:.68rem; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
+    padding:4px 9px; border-radius:999px;
+    background:var(--danger); color:#fff;
+  }
+  .card-body{
+    padding:14px 14px 12px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    flex:1;
+  }
+  .card-name{font-size:1.08rem; font-weight:600; line-height:1.25;}
+  .card-price{
+    font-family:'Work Sans', sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    color:var(--accent-strong);
+    font-variant-numeric:tabular-nums;
+  }
+  .card-desc{
+    font-size:.85rem;
+    color:var(--text-muted);
+    line-height:1.4;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+  .card-footer{
+    margin-top:auto;
+    display:flex;
+    justify-content:flex-end;
+    gap:6px;
+    padding-top:6px;
+  }
+  .icon-btn{
+    width:32px; height:32px;
+    border-radius:var(--radius-s);
+    border:1px solid var(--border);
+    background:var(--surface-2);
+    color:var(--text-muted);
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .icon-btn:hover{color:var(--text); border-color:var(--accent);}
+  .icon-btn.danger:hover{color:var(--danger); border-color:var(--danger);}
+
+  /* ---------- empty state ---------- */
+  .empty{
+    text-align:center;
+    padding:70px 20px;
+    color:var(--text-muted);
+  }
+  .empty .emoji{font-size:2.4rem; margin-bottom:10px;}
+  .empty h2{font-size:1.3rem; color:var(--text); margin-bottom:6px;}
+  .empty .btn{margin-top:16px;}
+
+  /* ---------- modal ---------- */
+  .overlay{
+    position:fixed; inset:0;
+    background:rgba(20,17,14,.5);
+    display:flex; align-items:center; justify-content:center;
+    padding:20px;
+    z-index:50;
+  }
+  .overlay[hidden]{display:none;}
+  .modal{
+    background:var(--surface);
+    border-radius:var(--radius-l);
+    max-width:480px;
+    width:100%;
+    max-height:90vh;
+    overflow-y:auto;
+    padding:24px;
+    box-shadow:var(--shadow);
+  }
+  .modal-small{max-width:380px;}
+  .modal h2{font-size:1.3rem; margin-bottom:16px;}
+  .field{margin-bottom:14px; display:flex; flex-direction:column; gap:6px;}
+  .field label{font-size:.82rem; font-weight:600; color:var(--text-muted);}
+  .field input[type=text], .field input[type=number], .field select, .field textarea{
+    border:1px solid var(--border);
+    border-radius:var(--radius-s);
+    padding:9px 11px;
+    background:var(--surface-2);
+    color:var(--text);
+    width:100%;
+  }
+  .field textarea{resize:vertical; min-height:64px;}
+  .price-row{display:flex; gap:8px; align-items:center;}
+  .price-row input[type=text].moneda{width:56px; text-align:center; flex:none;}
+  .photo-row{display:flex; gap:12px; align-items:center;}
+  .photo-preview{
+    width:72px; height:72px; border-radius:var(--radius-s);
+    background:var(--surface-2); border:1px solid var(--border);
+    object-fit:cover; flex:none;
+  }
+  .photo-preview.empty-ph{display:flex; align-items:center; justify-content:center; color:var(--text-muted); font-size:1.4rem;}
+  .checkbox-row{display:flex; align-items:center; gap:8px;}
+  .checkbox-row input{width:16px; height:16px;}
+  .modal-actions{display:flex; justify-content:flex-end; gap:8px; margin-top:18px;}
+  .field-error{font-size:.78rem; color:var(--danger);}
+
+  /* ---------- toast ---------- */
+  .toast-wrap{
+    position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; gap:8px; z-index:100;
+    align-items:center;
+  }
+  .toast{
+    background:var(--text); color:var(--bg);
+    padding:10px 18px; border-radius:999px;
+    font-size:.85rem; font-weight:600;
+    box-shadow:var(--shadow);
+    animation:toast-in .18s ease;
+  }
+  @keyframes toast-in{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  @media (max-width:480px){
+    .topbar{flex-direction:column;}
+    .topbar-actions{width:100%;}
+    .btn{flex:1; justify-content:center;}
+  }
+</style>
+
+<div id="app">
+  <div class="topbar">
+    <div class="brand-block">
+      <input id="brandNameInput" class="brand-name-input" value="Mi Catálogo" maxlength="60" aria-label="Nombre del catálogo" />
+      <div class="stats-line" id="statsLine">Cargando catálogo…</div>
+      <div class="contact-line" id="contactLine" hidden></div>
+      <div id="fallbackBanner" class="fallback-banner" hidden>Guardando solo en este navegador — no se sincroniza en la nube</div>
+      <div id="loadErrorBanner" class="fallback-banner" hidden></div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-ghost" id="btnExportCsv" title="Exportar lista a CSV">Exportar CSV</button>
+      <button class="btn btn-ghost" id="btnExportPdf" title="Descargar catálogo en PDF">Descargar PDF</button>
+      <button class="btn btn-primary" id="btnNewProduct">+ Nuevo producto</button>
+    </div>
+  </div>
+
+  <div class="filters" id="filters"></div>
+
+  <div id="gridWrap">
+    <div class="grid" id="grid"></div>
+  </div>
+</div>
+
+<!-- product form modal -->
+<div class="overlay" id="formOverlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="formTitle">
+    <h2 id="formTitle">Nuevo producto</h2>
+    <form id="productForm">
+      <div class="field">
+        <label for="f_nombre">Nombre</label>
+        <input type="text" id="f_nombre" maxlength="80" required />
+      </div>
+      <div class="field">
+        <label for="f_categoria">Categoría</label>
+        <select id="f_categoria" required></select>
+      </div>
+      <div class="field">
+        <label for="f_precio">Precio</label>
+        <div class="price-row">
+          <input type="text" class="moneda" id="f_moneda" maxlength="3" value="$" aria-label="Símbolo de moneda" />
+          <input type="number" id="f_precio" min="0" step="0.01" required style="flex:1" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="f_descripcion">Descripción</label>
+        <textarea id="f_descripcion" maxlength="300"></textarea>
+      </div>
+      <div class="field">
+        <label for="f_foto">Foto</label>
+        <div class="photo-row">
+          <img id="f_fotoPreviewImg" class="photo-preview" hidden />
+          <div id="f_fotoPreviewEmpty" class="photo-preview empty-ph">🖼️</div>
+          <input type="file" id="f_foto" accept="image/*" style="flex:1" />
+        </div>
+      </div>
+      <div class="field checkbox-row">
+        <input type="checkbox" id="f_disponible" checked />
+        <label for="f_disponible" style="font-weight:500; color:var(--text);">Disponible</label>
+      </div>
+      <div id="formError" class="field-error" hidden></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="btnCancelForm">Cancelar</button>
+        <button type="submit" class="btn btn-primary" id="btnSaveForm">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- delete confirm modal -->
+<div class="overlay" id="deleteOverlay" hidden>
+  <div class="modal modal-small" role="dialog" aria-modal="true" aria-labelledby="delTitle">
+    <h2 id="delTitle">Eliminar producto</h2>
+    <p style="color:var(--text-muted); font-size:.92rem;">Esta acción no se puede deshacer. ¿Eliminar «<span id="delName"></span>»?</p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-ghost" id="btnCancelDelete">Cancelar</button>
+      <button type="button" class="btn" id="btnConfirmDelete" style="background:var(--danger); border-color:var(--danger); color:#fff;">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-storage-compat.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyBBgbmT8oIOTBI8ZSj0JG-sGlwjCZTI3Jo",
+    authDomain: "myriedesign-ee80b.firebaseapp.com",
+    projectId: "myriedesign-ee80b",
+    storageBucket: "myriedesign-ee80b.firebasestorage.app",
+    messagingSenderId: "570181552736",
+    appId: "1:570181552736:web:db4db08ce31d1e37911105"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+<script>
+(function(){
+  "use strict";
+
+  var CATEGORIES = [
+    {key:'cadenas', label:'Cadenas'},
+    {key:'pulseras', label:'Pulseras'},
+    {key:'grabados', label:'Grabados'},
+    {key:'personalizados', label:'Personalizados'},
+    {key:'rosarios', label:'Rosarios'}
+  ];
+  var CAT_HEX_LIGHT = {cadenas:'#9C7A3C', pulseras:'#A3607A', grabados:'#4F708A', personalizados:'#5C7F58', rosarios:'#74557C'};
+
+  var state = {
+    products: [],
+    settings: {nombre:'Mi Catálogo'},
+    activeCategory: 'todos',
+    editingId: null,
+    pendingPhotoBlob: null,
+    removePhotoFlag: false,
+    deleteTargetId: null,
+    usingLocalFallback: false
+  };
+
+  var dbNS = null, assetsNS = null, downloadsNS = null;
+
+  var LOCAL_PRODUCTS_KEY = 'catalogo_joyeria_products_v1';
+  var LOCAL_SETTINGS_KEY = 'catalogo_joyeria_settings_v1';
+
+  // ---------- utils ----------
+  function $(id){ return document.getElementById(id); }
+  function uid(){ return 'p_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,8); }
+  function escapeHtml(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function formatPrice(n, moneda){
+    var num = Number(n) || 0;
+    var parts = num.toFixed(2).split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    var dec = parts[1] === '00' ? '' : '.' + parts[1];
+    return (moneda || '$') + parts[0] + dec;
+  }
+  function showToast(msg){
+    var wrap = $('toastWrap');
+    var el = document.createElement('div');
+    el.className = 'toast';
+    el.textContent = msg;
+    wrap.appendChild(el);
+    setTimeout(function(){ el.remove(); }, 3200);
+  }
+  function catLabel(key){
+    var c = CATEGORIES.filter(function(c){ return c.key === key; })[0];
+    return c ? c.label : key;
+  }
+
+  function safeLocalRead(key, fallback){
+    try{
+      var raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    }catch(e){ return fallback; }
+  }
+  function safeLocalWrite(key, val){
+    try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){}
+  }
+
+  // ---------- image resize ----------
+  function resizeImageFile(file, maxDim, quality){
+    maxDim = maxDim || 1000; quality = quality || 0.82;
+    return new Promise(function(resolve, reject){
+      var reader = new FileReader();
+      reader.onerror = function(){ reject(new Error('read_failed')); };
+      reader.onload = function(){
+        var img = new Image();
+        img.onerror = function(){ reject(new Error('decode_failed')); };
+        img.onload = function(){
+          var w = img.width, h = img.height;
+          var scale = Math.min(1, maxDim / Math.max(w, h));
+          var cw = Math.max(1, Math.round(w * scale));
+          var ch = Math.max(1, Math.round(h * scale));
+          var canvas = document.createElement('canvas');
+          canvas.width = cw; canvas.height = ch;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, cw, ch);
+          canvas.toBlob(function(blob){
+            if(!blob){ reject(new Error('encode_failed')); return; }
+            resolve({blob: blob, dataUrl: canvas.toDataURL('image/jpeg', quality)});
+          }, 'image/jpeg', quality);
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function getImageDims(dataUrl){
+    return new Promise(function(resolve, reject){
+      var img = new Image();
+      img.onload = function(){ resolve({w: img.naturalWidth || img.width, h: img.naturalHeight || img.height}); };
+      img.onerror = function(){ reject(new Error('decode_failed')); };
+      img.src = dataUrl;
+    });
+  }
+
+  function blobToDataURL(blob){
+    return new Promise(function(resolve, reject){
+      var reader = new FileReader();
+      reader.onload = function(){ resolve(reader.result); };
+      reader.onerror = function(){ reject(new Error('read_failed')); };
+      reader.readAsDataURL(blob);
+    });
+  }
+
+  // ---------- capabilities init ----------
+  async function initCapabilities(){
+    try{
+      dbNS = firebase.firestore();
+      assetsNS = firebase.storage();
+      downloadsNS = true;
+    }catch(e){
+      dbNS = null; assetsNS = null; downloadsNS = null;
+    }
+
+    if(dbNS){
+      subscribeProducts();
+      subscribeSettings();
+    } else {
+      state.usingLocalFallback = true;
+      $('fallbackBanner').hidden = false;
+      state.products = safeLocalRead(LOCAL_PRODUCTS_KEY, []);
+      state.settings = safeLocalRead(LOCAL_SETTINGS_KEY, {nombre:'Mi Catálogo'});
+      $('brandNameInput').value = state.settings.nombre || 'Mi Catálogo';
+      renderContactLine();
+      renderAll();
+    }
+    updateExportButtons();
+  }
+
+  function applyProductsSnapshot(snap){
+    state.products = snap.docs.map(function(d){
+      var data = Object.assign({}, d.data() || {});
+      data.id = d.id;
+      return data;
+    });
+    state.products.sort(function(a,b){ return (a.nombre||'').localeCompare(b.nombre||''); });
+    renderAll();
+  }
+
+  function loadProductsOnce(){
+    if(!dbNS) return;
+    dbNS.collection('products').get().then(function(snap){
+      $('loadErrorBanner').hidden = true;
+      applyProductsSnapshot(snap);
+    }).catch(function(err){
+      var detail = (err && err.code ? err.code : 'sin_code') + ': ' + (err && err.message ? err.message : String(err));
+      $('loadErrorBanner').textContent = 'Error al cargar catálogo: ' + detail;
+      $('loadErrorBanner').hidden = false;
+      renderAll();
+    });
+  }
+
+  function subscribeProducts(){
+    // Immediate one-time fetch so the catalog shows up right away even if
+    // the realtime listener below is slow to attach or never fires.
+    loadProductsOnce();
+    try{
+      dbNS.collection('products').onSnapshot(function(snap){
+        applyProductsSnapshot(snap);
+      }, function(err){
+        showToast('No se pudo sincronizar el catálogo (' + err.code + ')');
+      });
+    }catch(e){}
+  }
+
+  function subscribeSettings(){
+    try{
+      dbNS.doc('settings/negocio').onSnapshot(function(snap){
+        if(snap.exists){
+          var d = Object.assign({}, snap.data());
+          state.settings = d;
+          if(document.activeElement !== $('brandNameInput')){
+            $('brandNameInput').value = d.nombre || 'Mi Catálogo';
+          }
+          renderContactLine();
+        }
+      }, function(){});
+    }catch(e){}
+  }
+
+  var IG_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="vertical-align:-2px"><rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.3" fill="currentColor"/></svg>';
+
+  function renderContactLine(){
+    var s = state.settings || {};
+    var parts = [];
+    if(s.celular) parts.push('📱 ' + escapeHtml(s.celular));
+    if(s.instagram) parts.push(IG_SVG + ' ' + escapeHtml(s.instagram));
+    var el = $('contactLine');
+    if(parts.length){
+      el.innerHTML = parts.join('<span style="opacity:.5">   ·   </span>');
+      el.hidden = false;
+    } else {
+      el.hidden = true;
+    }
+  }
+
+  function saveSettings(nombre){
+    state.settings = Object.assign({}, state.settings, {nombre: nombre});
+    if(state.usingLocalFallback){
+      safeLocalWrite(LOCAL_SETTINGS_KEY, state.settings);
+      return;
+    }
+    if(dbNS){
+      dbNS.doc('settings/negocio').update({nombre: nombre, actualizadoEn: new Date().toISOString()}).catch(function(){});
+    }
+  }
+
+  function updateExportButtons(){
+    $('btnExportCsv').disabled = state.products.length === 0;
+    $('btnExportPdf').disabled = state.products.length === 0;
+  }
+
+  // ---------- rendering ----------
+  function visibleProducts(){
+    if(state.activeCategory === 'todos') return state.products;
+    return state.products.filter(function(p){ return p.categoria === state.activeCategory; });
+  }
+
+  function renderAll(){
+    renderStats();
+    renderFilters();
+    renderGrid();
+    updateExportButtons();
+  }
+
+  function renderStats(){
+    var n = state.products.length;
+    var total = state.products.reduce(function(sum, p){ return sum + (Number(p.precio) || 0); }, 0);
+    var moneda = state.products.length ? (state.products[0].moneda || '$') : '$';
+    var label = n === 0 ? 'Sin productos todavía' :
+      (n + (n === 1 ? ' producto' : ' productos') + ' · valor total ' + formatPrice(total, moneda));
+    $('statsLine').textContent = label;
+  }
+
+  function renderFilters(){
+    var wrap = $('filters');
+    var counts = {};
+    CATEGORIES.forEach(function(c){ counts[c.key] = 0; });
+    state.products.forEach(function(p){ if(counts[p.categoria] !== undefined) counts[p.categoria]++; });
+
+    var html = '';
+    html += pillHtml('todos', 'Todos', state.products.length, null);
+    CATEGORIES.forEach(function(c){
+      html += pillHtml(c.key, c.label, counts[c.key], CAT_HEX_LIGHT[c.key]);
+    });
+    wrap.innerHTML = html;
+
+    Array.prototype.forEach.call(wrap.querySelectorAll('[data-cat]'), function(el){
+      el.addEventListener('click', function(){
+        state.activeCategory = el.getAttribute('data-cat');
+        renderFilters();
+        renderGrid();
+      });
+    });
+  }
+
+  function pillHtml(key, label, count, hex){
+    var active = state.activeCategory === key ? ' active' : '';
+    var dotStyle = hex ? ' style="--dot:' + hex + '"' : '';
+    return '<button type="button" class="pill' + active + '" data-cat="' + key + '"' + dotStyle + '>' +
+      (hex ? '<span class="dot"></span>' : '') +
+      escapeHtml(label) + ' <span class="count">' + count + '</span>' +
+      '</button>';
+  }
+
+  function renderGrid(){
+    var grid = $('grid');
+    var list = visibleProducts();
+    if(list.length === 0){
+      $('gridWrap').innerHTML =
+        '<div class="empty">' +
+          '<div class="emoji">💍</div>' +
+          '<h2>' + (state.products.length === 0 ? 'Aún no tienes productos' : 'Nada en esta categoría') + '</h2>' +
+          '<p>' + (state.products.length === 0 ? 'Agrega tu primera pieza para armar tu catálogo.' : 'Prueba con otro filtro o agrega un producto aquí.') + '</p>' +
+          '<button class="btn btn-primary" id="btnEmptyAdd">+ Nuevo producto</button>' +
+        '</div>';
+      $('btnEmptyAdd').addEventListener('click', openNewForm);
+      return;
+    }
+    if(!document.getElementById('grid')){
+      $('gridWrap').innerHTML = '<div class="grid" id="grid"></div>';
+      grid = $('grid');
+    }
+    grid.innerHTML = list.map(cardHtml).join('');
+
+    Array.prototype.forEach.call(grid.querySelectorAll('[data-edit]'), function(el){
+      el.addEventListener('click', function(){ openEditForm(el.getAttribute('data-edit')); });
+    });
+    Array.prototype.forEach.call(grid.querySelectorAll('[data-del]'), function(el){
+      el.addEventListener('click', function(){ openDeleteConfirm(el.getAttribute('data-del')); });
+    });
+  }
+
+  function cardHtml(p){
+    var hex = CAT_HEX_LIGHT[p.categoria] || '#888';
+    var photo = p.fotoUrl
+      ? '<img src="' + escapeHtml(p.fotoUrl) + '" alt="' + escapeHtml(p.nombre) + '" loading="lazy" />'
+      : '<div class="no-photo">🖼️</div>';
+    return (
+      '<div class="card">' +
+        '<div class="card-photo" style="--catcolor:' + hex + '">' +
+          photo +
+          '<span class="badge">' + escapeHtml(catLabel(p.categoria)) + '</span>' +
+          (p.disponible === false ? '<span class="badge-agotado">Agotado</span>' : '') +
+        '</div>' +
+        '<div class="card-body">' +
+          '<div class="card-name">' + escapeHtml(p.nombre) + '</div>' +
+          '<div class="card-price">' + formatPrice(p.precio, p.moneda) + '</div>' +
+          (p.descripcion ? '<div class="card-desc">' + escapeHtml(p.descripcion) + '</div>' : '') +
+          '<div class="card-footer">' +
+            '<button type="button" class="icon-btn" data-edit="' + p.id + '" aria-label="Editar" title="Editar">✎</button>' +
+            '<button type="button" class="icon-btn danger" data-del="' + p.id + '" aria-label="Eliminar" title="Eliminar">🗑</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  // ---------- form modal ----------
+  function populateCategorySelect(){
+    var sel = $('f_categoria');
+    sel.innerHTML = CATEGORIES.map(function(c){
+      return '<option value="' + c.key + '">' + escapeHtml(c.label) + '</option>';
+    }).join('');
+  }
+
+  function openNewForm(){
+    state.editingId = null;
+    state.pendingPhotoBlob = null;
+    state.removePhotoFlag = false;
+    $('formTitle').textContent = 'Nuevo producto';
+    $('productForm').reset();
+    $('f_moneda').value = (state.products[0] && state.products[0].moneda) || '$';
+    $('f_disponible').checked = true;
+    $('f_fotoPreviewImg').hidden = true;
+    $('f_fotoPreviewEmpty').hidden = false;
+    $('formError').hidden = true;
+    $('formOverlay').hidden = false;
+    $('f_nombre').focus();
+  }
+
+  function openEditForm(id){
+    var p = state.products.filter(function(x){ return x.id === id; })[0];
+    if(!p) return;
+    state.editingId = id;
+    state.pendingPhotoBlob = null;
+    state.removePhotoFlag = false;
+    $('formTitle').textContent = 'Editar producto';
+    $('f_nombre').value = p.nombre || '';
+    $('f_categoria').value = p.categoria || CATEGORIES[0].key;
+    $('f_moneda').value = p.moneda || '$';
+    $('f_precio').value = p.precio != null ? p.precio : '';
+    $('f_descripcion').value = p.descripcion || '';
+    $('f_disponible').checked = p.disponible !== false;
+    if(p.fotoUrl){
+      $('f_fotoPreviewImg').src = p.fotoUrl;
+      $('f_fotoPreviewImg').hidden = false;
+      $('f_fotoPreviewEmpty').hidden = true;
+    } else {
+      $('f_fotoPreviewImg').hidden = true;
+      $('f_fotoPreviewEmpty').hidden = false;
+    }
+    $('f_foto').value = '';
+    $('formError').hidden = true;
+    $('formOverlay').hidden = false;
+    $('f_nombre').focus();
+  }
+
+  function closeForm(){
+    $('formOverlay').hidden = true;
+  }
+
+  async function handlePhotoChange(e){
+    var file = e.target.files && e.target.files[0];
+    if(!file) return;
+    try{
+      var result = await resizeImageFile(file, 1000, 0.82);
+      state.pendingPhotoBlob = result.blob;
+      state.removePhotoFlag = false;
+      $('f_fotoPreviewImg').src = result.dataUrl;
+      $('f_fotoPreviewImg').hidden = false;
+      $('f_fotoPreviewEmpty').hidden = true;
+    }catch(err){
+      showToast('No se pudo leer esa imagen');
+    }
+  }
+
+  async function handleFormSubmit(e){
+    e.preventDefault();
+    var nombre = $('f_nombre').value.trim();
+    var categoria = $('f_categoria').value;
+    var moneda = $('f_moneda').value.trim() || '$';
+    var precio = parseFloat($('f_precio').value);
+    var descripcion = $('f_descripcion').value.trim();
+    var disponible = $('f_disponible').checked;
+
+    if(!nombre || isNaN(precio) || precio < 0){
+      $('formError').textContent = 'Completa el nombre y un precio válido.';
+      $('formError').hidden = false;
+      return;
+    }
+
+    $('btnSaveForm').disabled = true;
+    $('btnSaveForm').textContent = 'Guardando…';
+
+    try{
+      var existing = state.editingId ? state.products.filter(function(x){ return x.id === state.editingId; })[0] : null;
+      var fotoId = existing ? existing.fotoId : null;
+      var fotoUrl = existing ? existing.fotoUrl : null;
+      var oldFotoId = fotoId;
+
+      if(state.pendingPhotoBlob && assetsNS){
+        var path = 'photos/' + uid() + '.jpg';
+        var ref = assetsNS.ref(path);
+        await ref.put(state.pendingPhotoBlob, {contentType:'image/jpeg'});
+        fotoId = path;
+        fotoUrl = await ref.getDownloadURL();
+      } else if(state.removePhotoFlag){
+        fotoId = null;
+        fotoUrl = null;
+      }
+
+      var body = {
+        nombre: nombre,
+        categoria: categoria,
+        precio: precio,
+        moneda: moneda,
+        descripcion: descripcion,
+        disponible: disponible,
+        fotoId: fotoId,
+        fotoUrl: fotoUrl,
+        actualizadoEn: new Date().toISOString(),
+        creadoEn: existing ? existing.creadoEn : new Date().toISOString()
+      };
+
+      if(state.usingLocalFallback){
+        if(state.editingId){
+          var idx = state.products.findIndex(function(x){ return x.id === state.editingId; });
+          body.id = state.editingId;
+          state.products[idx] = body;
+        } else {
+          body.id = uid();
+          state.products.push(body);
+        }
+        safeLocalWrite(LOCAL_PRODUCTS_KEY, state.products);
+        renderAll();
+      } else if(dbNS){
+        if(state.editingId){
+          await dbNS.collection('products').doc(state.editingId).set(body);
+        } else {
+          await dbNS.collection('products').add(body);
+        }
+        loadProductsOnce();
+      }
+
+      if(assetsNS && oldFotoId && oldFotoId !== fotoId){
+        assetsNS.ref(oldFotoId).delete().catch(function(){});
+      }
+
+      closeForm();
+      showToast('Producto guardado');
+    }catch(err){
+      $('formError').textContent = 'No se pudo guardar. Intenta de nuevo.';
+      $('formError').hidden = false;
+    }finally{
+      $('btnSaveForm').disabled = false;
+      $('btnSaveForm').textContent = 'Guardar';
+    }
+  }
+
+  // ---------- delete ----------
+  function openDeleteConfirm(id){
+    var p = state.products.filter(function(x){ return x.id === id; })[0];
+    if(!p) return;
+    state.deleteTargetId = id;
+    $('delName').textContent = p.nombre;
+    $('deleteOverlay').hidden = false;
+  }
+  function closeDeleteConfirm(){
+    $('deleteOverlay').hidden = true;
+    state.deleteTargetId = null;
+  }
+  async function confirmDelete(){
+    var id = state.deleteTargetId;
+    if(!id) return;
+    var p = state.products.filter(function(x){ return x.id === id; })[0];
+    $('btnConfirmDelete').disabled = true;
+    try{
+      if(state.usingLocalFallback){
+        state.products = state.products.filter(function(x){ return x.id !== id; });
+        safeLocalWrite(LOCAL_PRODUCTS_KEY, state.products);
+        renderAll();
+      } else if(dbNS){
+        await dbNS.collection('products').doc(id).delete();
+        loadProductsOnce();
+      }
+      if(assetsNS && p && p.fotoId){
+        assetsNS.ref(p.fotoId).delete().catch(function(){});
+      }
+      showToast('Producto eliminado');
+    }catch(err){
+      showToast('No se pudo eliminar');
+    }finally{
+      $('btnConfirmDelete').disabled = false;
+      closeDeleteConfirm();
+    }
+  }
+
+  // ---------- file download ----------
+  function saveFile(filename, data){
+    var blob = (data instanceof Blob) ? data : new Blob([data], {type:'text/csv;charset=utf-8'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+  }
+
+  // ---------- CSV export ----------
+  function csvEscape(v){
+    var s = String(v == null ? '' : v);
+    if(/[",\n]/.test(s)) s = '"' + s.replace(/"/g, '""') + '"';
+    return s;
+  }
+  async function exportCsv(){
+    if(!downloadsNS){ showToast('La exportación no está disponible aquí'); return; }
+    var rows = [['Nombre','Categoria','Precio','Moneda','Descripcion','Disponible']];
+    visibleProducts().forEach(function(p){
+      rows.push([p.nombre, catLabel(p.categoria), p.precio, p.moneda || '$', p.descripcion || '', p.disponible === false ? 'No' : 'Si']);
+    });
+    var csv = rows.map(function(r){ return r.map(csvEscape).join(','); }).join('\n');
+    try{
+      saveFile('catalogo.csv', csv);
+      showToast('CSV descargado');
+    }catch(err){
+      showToast('No se pudo exportar el CSV');
+    }
+  }
+
+  // ---------- PDF export ----------
+  async function exportPdf(){
+    if(!downloadsNS){ showToast('La exportación no está disponible aquí'); return; }
+    if(!window.jspdf){ showToast('No se pudo cargar el generador de PDF'); return; }
+    var list = visibleProducts();
+    if(list.length === 0){ showToast('No hay productos para exportar'); return; }
+
+    $('btnExportPdf').disabled = true;
+    $('btnExportPdf').textContent = 'Generando…';
+
+    try{
+      var jsPDF = window.jspdf.jsPDF;
+      var doc = new jsPDF({unit:'mm', format:'a4'});
+      var pageW = doc.internal.pageSize.getWidth();
+      var pageH = doc.internal.pageSize.getHeight();
+      var margin = 14;
+      var y = margin;
+
+      var titulo = (state.settings.nombre || 'Catálogo') +
+        (state.activeCategory !== 'todos' ? ' — ' + catLabel(state.activeCategory) : '');
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(18);
+      doc.text(titulo, margin, y);
+      y += 6;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.setTextColor(120,110,95);
+      var fecha = new Date().toLocaleDateString('es-VE', {year:'numeric', month:'long', day:'numeric'});
+      doc.text(fecha + ' · ' + list.length + (list.length === 1 ? ' producto' : ' productos'), margin, y);
+      doc.setTextColor(30,26,24);
+      y += 5;
+
+      var contactBits = [];
+      if(state.settings.celular) contactBits.push(state.settings.celular);
+      if(state.settings.instagram) contactBits.push(state.settings.instagram);
+      if(contactBits.length){
+        doc.setFontSize(9);
+        doc.setTextColor(120,110,95);
+        doc.text(contactBits.join('   ·   '), margin, y);
+        doc.setTextColor(30,26,24);
+        y += 5;
+      }
+      y += 3;
+
+      var imgSize = 32;
+      var rowGap = 6;
+
+      for(var i = 0; i < list.length; i++){
+        var p = list[i];
+        var textX = margin + imgSize + 6;
+        var blockHeight = imgSize;
+
+        // estimate description height first
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        var descLines = p.descripcion ? doc.splitTextToSize(p.descripcion, pageW - margin - textX) : [];
+        var estHeight = Math.max(imgSize, 18 + descLines.length * 4);
+
+        if(y + estHeight > pageH - margin){
+          doc.addPage();
+          y = margin;
+        }
+
+        var topY = y;
+
+        // image (background box first, then the photo scaled to fit inside without distortion)
+        doc.setDrawColor(220,214,200);
+        doc.setFillColor(246,243,236);
+        doc.roundedRect(margin, topY, imgSize, imgSize, 2, 2, 'FD');
+        var drew = false;
+        if(p.fotoUrl){
+          try{
+            var dataUrl;
+            if(p.fotoUrl.indexOf('data:') === 0){
+              dataUrl = p.fotoUrl;
+            } else {
+              var resp = await fetch(p.fotoUrl);
+              var blob = await resp.blob();
+              dataUrl = await blobToDataURL(blob);
+            }
+            var dims = await getImageDims(dataUrl);
+            var scale = Math.min(imgSize / dims.w, imgSize / dims.h);
+            var drawW = dims.w * scale;
+            var drawH = dims.h * scale;
+            var offX = margin + (imgSize - drawW) / 2;
+            var offY = topY + (imgSize - drawH) / 2;
+            doc.addImage(dataUrl, 'JPEG', offX, offY, drawW, drawH, undefined, 'FAST');
+            drew = true;
+          }catch(e){ drew = false; }
+        }
+
+        var ty = topY + 4;
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(11);
+        doc.setTextColor(30,26,24);
+        doc.text(p.nombre || '', textX, ty);
+        ty += 5;
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(8.5);
+        doc.setTextColor(140,110,60);
+        doc.text(catLabel(p.categoria) + (p.disponible === false ? '   ·   AGOTADO' : ''), textX, ty);
+        ty += 5;
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(10.5);
+        doc.setTextColor(30,26,24);
+        doc.text(formatPrice(p.precio, p.moneda), textX, ty);
+        ty += 5;
+
+        if(descLines.length){
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(9);
+          doc.setTextColor(90,82,72);
+          doc.text(descLines, textX, ty);
+          ty += descLines.length * 4;
+        }
+
+        var rowHeight = Math.max(imgSize, ty - topY);
+        y = topY + rowHeight + rowGap;
+
+        doc.setDrawColor(230,225,215);
+        doc.line(margin, y - rowGap/2, pageW - margin, y - rowGap/2);
+      }
+
+      var blobOut = doc.output('blob');
+      var fname = 'catalogo' + (state.activeCategory !== 'todos' ? '-' + state.activeCategory : '') + '.pdf';
+      saveFile(fname, blobOut);
+      showToast('PDF descargado');
+    }catch(err){
+      showToast('No se pudo generar el PDF');
+    }finally{
+      $('btnExportPdf').disabled = false;
+      $('btnExportPdf').textContent = 'Descargar PDF';
+    }
+  }
+
+  // ---------- wire up ----------
+  function init(){
+    populateCategorySelect();
+    renderFilters();
+    renderStats();
+
+    $('btnNewProduct').addEventListener('click', openNewForm);
+    $('btnCancelForm').addEventListener('click', closeForm);
+    $('formOverlay').addEventListener('click', function(e){ if(e.target === $('formOverlay')) closeForm(); });
+    $('productForm').addEventListener('submit', handleFormSubmit);
+    $('f_foto').addEventListener('change', handlePhotoChange);
+
+    $('btnCancelDelete').addEventListener('click', closeDeleteConfirm);
+    $('deleteOverlay').addEventListener('click', function(e){ if(e.target === $('deleteOverlay')) closeDeleteConfirm(); });
+    $('btnConfirmDelete').addEventListener('click', confirmDelete);
+
+    $('brandNameInput').addEventListener('change', function(){
+      saveSettings($('brandNameInput').value.trim() || 'Mi Catálogo');
+    });
+
+    $('btnExportCsv').addEventListener('click', exportCsv);
+    $('btnExportPdf').addEventListener('click', exportPdf);
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        if(!$('formOverlay').hidden) closeForm();
+        if(!$('deleteOverlay').hidden) closeDeleteConfirm();
+      }
+    });
+
+    initCapabilities();
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+</body></html>
