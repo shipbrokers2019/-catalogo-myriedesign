@@ -677,6 +677,29 @@
     });
   }
 
+  function cropDataUrlToAspect(dataUrl, targetAspect){
+    return new Promise(function(resolve, reject){
+      var img = new Image();
+      img.onload = function(){
+        var w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+        var srcAspect = w / h;
+        var cw, ch, sx, sy;
+        if(srcAspect > targetAspect){
+          ch = h; cw = h * targetAspect; sx = (w - cw) / 2; sy = 0;
+        } else {
+          cw = w; ch = w / targetAspect; sx = 0; sy = (h - ch) / 2;
+        }
+        var canvas = document.createElement('canvas');
+        canvas.width = Math.round(cw); canvas.height = Math.round(ch);
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img, sx, sy, cw, ch, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL('image/jpeg', 0.85));
+      };
+      img.onerror = function(){ reject(new Error('decode_failed')); };
+      img.src = dataUrl;
+    });
+  }
+
   function blobToDataURL(blob){
     return new Promise(function(resolve, reject){
       var reader = new FileReader();
@@ -1196,22 +1219,23 @@
       // One big product photo per row (stacked), info below — no zoom needed.
       var contentW = pageW - margin * 2;
       var cellW = contentW;
-      var imgH = 118;
-      var rowGap = 16;
+      var imgH = 170;
+      var rowGap = 18;
+      var targetAspect = cellW / imgH;
 
       for(var i = 0; i < list.length; i++){
         var p = list[i];
         var cellX = margin;
 
         doc.setFont('helvetica', 'normal');
-        doc.setFontSize(9);
+        doc.setFontSize(11.5);
         var extraText = p.extraNombre ? (p.extraNombre + ' ' + (p.extraMoneda || '+$') + p.extraPrecio) : '';
         var extraLines = extraText ? doc.splitTextToSize(extraText, cellW) : [];
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(13);
+        doc.setFontSize(18);
         var nameLines = doc.splitTextToSize(p.nombre || '', cellW);
-        var textHeight = 6 + nameLines.length * 6 + 5.5 + 6 + extraLines.length * 4.2 + 2;
-        var rowHeight = imgH + 5 + textHeight;
+        var textHeight = 8 + nameLines.length * 8 + 7 + 8.5 + extraLines.length * 5.5 + 2;
+        var rowHeight = imgH + 6 + textHeight;
 
         if(y + rowHeight > pageH - margin){
           doc.addPage();
@@ -1234,49 +1258,44 @@
               var blob = await resp.blob();
               dataUrl = await blobToDataURL(blob);
             }
-            var dims = await getImageDims(dataUrl);
-            var scale = Math.min(cellW / dims.w, imgH / dims.h);
-            var drawW = dims.w * scale;
-            var drawH = dims.h * scale;
-            var offX = cellX + (cellW - drawW) / 2;
-            var offY = topY + (imgH - drawH) / 2;
-            doc.addImage(dataUrl, 'JPEG', offX, offY, drawW, drawH, undefined, 'FAST');
+            var croppedUrl = await cropDataUrlToAspect(dataUrl, targetAspect);
+            doc.addImage(croppedUrl, 'JPEG', cellX, topY, cellW, imgH, undefined, 'FAST');
           }catch(e){}
         }
         if(p.disponible === false){
           doc.setFillColor(179,70,44);
-          doc.roundedRect(cellX + cellW - 28, topY + 5, 24, 8, 2, 2, 'F');
+          doc.roundedRect(cellX + cellW - 34, topY + 6, 28, 10, 2, 2, 'F');
           doc.setFont('helvetica', 'bold');
-          doc.setFontSize(7.5);
+          doc.setFontSize(9);
           doc.setTextColor(255,255,255);
-          doc.text('AGOTADO', cellX + cellW - 16, topY + 10.3, {align:'center'});
+          doc.text('AGOTADO', cellX + cellW - 20, topY + 12.6, {align:'center'});
         }
 
-        var ty = topY + imgH + 7;
+        var ty = topY + imgH + 8.5;
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(13);
+        doc.setFontSize(18);
         doc.setTextColor(30,26,24);
         doc.text(nameLines, cellX, ty);
-        ty += nameLines.length * 6;
+        ty += nameLines.length * 8;
 
         doc.setFont('helvetica', 'normal');
-        doc.setFontSize(9);
+        doc.setFontSize(11.5);
         doc.setTextColor(140,110,60);
         doc.text(catLabel(p.categoria), cellX, ty);
-        ty += 5.5;
+        ty += 7;
 
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(13);
+        doc.setFontSize(18);
         doc.setTextColor(30,26,24);
         doc.text(formatPrice(p.precio, p.moneda), cellX, ty);
-        ty += 6;
+        ty += 8.5;
 
         if(extraLines.length){
           doc.setFont('helvetica', 'normal');
-          doc.setFontSize(9.5);
+          doc.setFontSize(11.5);
           doc.setTextColor(90,82,72);
           doc.text(extraLines, cellX, ty);
-          ty += extraLines.length * 4.2;
+          ty += extraLines.length * 5.5;
         }
 
         y = topY + Math.max(rowHeight, ty - topY) + rowGap;
