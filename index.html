@@ -73,8 +73,11 @@
   }
 
   *{box-sizing:border-box;}
+  html{overflow-x:hidden;}
   body{
     margin:0;
+    max-width:100vw;
+    overflow-x:hidden;
     background:var(--bg);
     color:var(--text);
     font-family:'Work Sans', system-ui, -apple-system, sans-serif;
@@ -88,19 +91,30 @@
   #app{
     max-width:1120px;
     margin:0 auto;
-    padding:20px 20px 64px;
+    padding:0 20px 88px;
   }
 
   /* ---------- header ---------- */
+  .app-header{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:var(--bg);
+    padding-top:16px;
+    margin:0 -20px;
+    padding-left:20px;
+    padding-right:20px;
+    box-shadow:0 1px 0 var(--border);
+  }
   .topbar{
     display:flex;
     flex-wrap:wrap;
-    gap:16px;
+    gap:12px;
     align-items:flex-start;
     justify-content:space-between;
-    padding-block:8px 20px;
+    padding-block:8px 14px;
   }
-  .brand-block{min-width:220px; flex:1 1 260px;}
+  .brand-block{min-width:0; flex:1 1 200px;}
   .brand-name-input{
     font-family:'Fraunces', Georgia, serif;
     font-size:1.9rem;
@@ -172,17 +186,41 @@
   .btn-ghost{background:transparent;}
   .btn:disabled{opacity:.5; cursor:not-allowed;}
   .btn-icon{
-    width:34px; height:34px; padding:0; justify-content:center;
+    padding:8px 12px;
+    font-size:.82rem;
     border-radius:var(--radius-s);
   }
+  .fab{
+    position:fixed;
+    right:20px;
+    bottom:calc(20px + env(safe-area-inset-bottom, 0px));
+    width:56px; height:56px;
+    border-radius:50%;
+    border:none;
+    background:var(--accent);
+    color:var(--accent-ink);
+    font-size:1.8rem;
+    line-height:1;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+    cursor:pointer;
+    z-index:30;
+    transition:transform .1s ease, background .15s ease;
+  }
+  .fab:hover{background:var(--accent-strong);}
+  .fab:active{transform:scale(.94);}
 
   /* ---------- filter pills ---------- */
   .filters{
     display:flex;
     gap:8px;
-    flex-wrap:wrap;
-    padding-block:4px 22px;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding-block:4px 14px;
   }
+  .filters::-webkit-scrollbar{display:none;}
   .pill{
     border:1px solid var(--border);
     background:var(--surface);
@@ -195,6 +233,8 @@
     display:flex;
     align-items:center;
     gap:6px;
+    flex:none;
+    white-space:nowrap;
   }
   .pill .dot{width:8px; height:8px; border-radius:50%; background:var(--dot,var(--text-muted));}
   .pill.active{
@@ -360,33 +400,75 @@
   @keyframes toast-in{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
 
   @media (max-width:480px){
-    .topbar{flex-direction:column;}
-    .topbar-actions{width:100%;}
-    .btn{flex:1; justify-content:center;}
+    .overlay{align-items:flex-end; padding:0;}
+    .modal{
+      max-width:none;
+      border-radius:var(--radius-l) var(--radius-l) 0 0;
+      max-height:85vh;
+      padding-bottom:calc(24px + env(safe-area-inset-bottom, 0px));
+      animation:sheet-up .2s ease;
+    }
+    @keyframes sheet-up{from{transform:translateY(24px); opacity:.6;} to{transform:translateY(0); opacity:1;}}
+    .topbar{flex-direction:row; align-items:flex-start;}
+    .topbar-actions{flex:none;}
+    .btn-icon{flex:none;}
+    .brand-name-input{font-size:1.5rem;}
+
+    .grid{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .card{
+      flex-direction:row;
+      border-radius:var(--radius-m);
+    }
+    .card-photo{
+      width:72px; height:72px; flex:none;
+      aspect-ratio:unset;
+    }
+    .badge{
+      top:auto; left:4px; bottom:4px;
+      font-size:.58rem; padding:2px 6px;
+    }
+    .badge-agotado{
+      top:4px; right:4px;
+      font-size:.58rem; padding:2px 6px;
+    }
+    .card-body{
+      padding:8px 12px;
+      justify-content:center;
+      gap:3px;
+    }
+    .card-desc{display:none;}
+    .card-footer{padding-top:2px;}
   }
 </style>
 
 <div id="app">
-  <div class="topbar">
-    <div class="brand-block">
-      <input id="brandNameInput" class="brand-name-input" value="Mi Catálogo" maxlength="60" aria-label="Nombre del catálogo" />
-      <div class="stats-line" id="statsLine">Cargando catálogo…</div>
-      <div class="contact-line" id="contactLine" hidden></div>
-      <div id="fallbackBanner" class="fallback-banner" hidden>Guardando solo en este navegador — no se sincroniza en la nube</div>
-      <div id="loadErrorBanner" class="fallback-banner" hidden></div>
+  <div class="app-header">
+    <div class="topbar">
+      <div class="brand-block">
+        <input id="brandNameInput" class="brand-name-input" value="Mi Catálogo" maxlength="60" aria-label="Nombre del catálogo" />
+        <div class="stats-line" id="statsLine">Cargando catálogo…</div>
+        <div class="contact-line" id="contactLine" hidden></div>
+        <div id="fallbackBanner" class="fallback-banner" hidden>Guardando solo en este navegador — no se sincroniza en la nube</div>
+        <div id="loadErrorBanner" class="fallback-banner" hidden></div>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn btn-ghost btn-icon" id="btnExportCsv" title="Exportar lista a CSV" aria-label="Exportar CSV">⤓ CSV</button>
+        <button class="btn btn-ghost btn-icon" id="btnExportPdf" title="Descargar catálogo en PDF" aria-label="Descargar PDF">⤓ PDF</button>
+      </div>
     </div>
-    <div class="topbar-actions">
-      <button class="btn btn-ghost" id="btnExportCsv" title="Exportar lista a CSV">Exportar CSV</button>
-      <button class="btn btn-ghost" id="btnExportPdf" title="Descargar catálogo en PDF">Descargar PDF</button>
-      <button class="btn btn-primary" id="btnNewProduct">+ Nuevo producto</button>
-    </div>
-  </div>
 
-  <div class="filters" id="filters"></div>
+    <div class="filters" id="filters"></div>
+  </div>
 
   <div id="gridWrap">
     <div class="grid" id="grid"></div>
   </div>
+
+  <button class="fab" id="btnNewProduct" aria-label="Nuevo producto" title="Nuevo producto">+</button>
 </div>
 
 <!-- product form modal -->
@@ -887,9 +969,12 @@
       if(state.pendingPhotoBlob && assetsNS){
         var path = 'photos/' + uid() + '.jpg';
         var ref = assetsNS.ref(path);
-        await ref.put(state.pendingPhotoBlob, {contentType:'image/jpeg'});
+        var uploadTimeout = new Promise(function(_, reject){
+          setTimeout(function(){ reject(new Error('timeout_subida_foto')); }, 25000);
+        });
+        await Promise.race([ref.put(state.pendingPhotoBlob, {contentType:'image/jpeg'}), uploadTimeout]);
         fotoId = path;
-        fotoUrl = await ref.getDownloadURL();
+        fotoUrl = await Promise.race([ref.getDownloadURL(), uploadTimeout]);
       } else if(state.removePhotoFlag){
         fotoId = null;
         fotoUrl = null;
@@ -935,7 +1020,8 @@
       closeForm();
       showToast('Producto guardado');
     }catch(err){
-      $('formError').textContent = 'No se pudo guardar. Intenta de nuevo.';
+      var errDetail = (err && err.code) ? err.code : (err && err.message) ? err.message : String(err);
+      $('formError').textContent = 'No se pudo guardar: ' + errDetail;
       $('formError').hidden = false;
     }finally{
       $('btnSaveForm').disabled = false;
