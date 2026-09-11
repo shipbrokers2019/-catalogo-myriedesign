@@ -1193,39 +1193,34 @@
       }
       y += 3;
 
-      // Two big product photos per row, info stacked below each — no zoom needed.
-      var cols = 2;
-      var colGap = 8;
-      var rowGap = 10;
+      // One big product photo per row (stacked), info below — no zoom needed.
       var contentW = pageW - margin * 2;
-      var cellW = (contentW - colGap * (cols - 1)) / cols;
-      var imgH = cellW;
-      var col = 0;
-      var rowTopY = y;
-      var rowMaxHeight = 0;
+      var cellW = contentW;
+      var imgH = 82;
+      var rowGap = 12;
 
       for(var i = 0; i < list.length; i++){
         var p = list[i];
-        var cellX = margin + col * (cellW + colGap);
+        var cellX = margin;
 
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(9);
         var extraText = p.extraNombre ? (p.extraNombre + ' ' + (p.extraMoneda || '+$') + p.extraPrecio) : '';
         var extraLines = extraText ? doc.splitTextToSize(extraText, cellW) : [];
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(11.5);
+        doc.setFontSize(13);
         var nameLines = doc.splitTextToSize(p.nombre || '', cellW);
-        var textHeight = 5 + nameLines.length * 5 + 5 + 5.5 + extraLines.length * 4 + 2;
-        var cellHeight = imgH + 4 + textHeight;
+        var textHeight = 6 + nameLines.length * 6 + 5.5 + 6 + extraLines.length * 4.2 + 2;
+        var rowHeight = imgH + 5 + textHeight;
 
-        if(col === 0 && rowTopY + cellHeight > pageH - margin){
+        if(y + rowHeight > pageH - margin){
           doc.addPage();
-          rowTopY = margin;
+          y = margin;
         }
 
-        var topY = rowTopY;
+        var topY = y;
 
-        // image (background box first, then the photo scaled to fit inside without distortion)
+        // image box (background first, then the photo scaled to fit inside without distortion — no crop)
         doc.setDrawColor(220,214,200);
         doc.setFillColor(246,243,236);
         doc.roundedRect(cellX, topY, cellW, imgH, 3, 3, 'FD');
@@ -1240,65 +1235,55 @@
               dataUrl = await blobToDataURL(blob);
             }
             var dims = await getImageDims(dataUrl);
-            var scale = Math.max(cellW / dims.w, imgH / dims.h);
+            var scale = Math.min(cellW / dims.w, imgH / dims.h);
             var drawW = dims.w * scale;
             var drawH = dims.h * scale;
             var offX = cellX + (cellW - drawW) / 2;
             var offY = topY + (imgH - drawH) / 2;
-            doc.saveGraphicsState();
-            doc.rect(cellX, topY, cellW, imgH, null);
-            doc.clip();
             doc.addImage(dataUrl, 'JPEG', offX, offY, drawW, drawH, undefined, 'FAST');
-            doc.restoreGraphicsState();
           }catch(e){}
         }
         if(p.disponible === false){
           doc.setFillColor(179,70,44);
-          doc.roundedRect(cellX + cellW - 26, topY + 4, 22, 7, 2, 2, 'F');
+          doc.roundedRect(cellX + cellW - 28, topY + 5, 24, 8, 2, 2, 'F');
           doc.setFont('helvetica', 'bold');
-          doc.setFontSize(7);
+          doc.setFontSize(7.5);
           doc.setTextColor(255,255,255);
-          doc.text('AGOTADO', cellX + cellW - 15, topY + 8.6, {align:'center'});
+          doc.text('AGOTADO', cellX + cellW - 16, topY + 10.3, {align:'center'});
         }
 
-        var ty = topY + imgH + 6;
+        var ty = topY + imgH + 7;
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(11.5);
+        doc.setFontSize(13);
         doc.setTextColor(30,26,24);
         doc.text(nameLines, cellX, ty);
-        ty += nameLines.length * 5;
+        ty += nameLines.length * 6;
 
         doc.setFont('helvetica', 'normal');
-        doc.setFontSize(8.5);
+        doc.setFontSize(9);
         doc.setTextColor(140,110,60);
         doc.text(catLabel(p.categoria), cellX, ty);
-        ty += 5;
+        ty += 5.5;
 
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(11.5);
+        doc.setFontSize(13);
         doc.setTextColor(30,26,24);
         doc.text(formatPrice(p.precio, p.moneda), cellX, ty);
-        ty += 5.5;
+        ty += 6;
 
         if(extraLines.length){
           doc.setFont('helvetica', 'normal');
-          doc.setFontSize(9);
+          doc.setFontSize(9.5);
           doc.setTextColor(90,82,72);
           doc.text(extraLines, cellX, ty);
-          ty += extraLines.length * 4;
+          ty += extraLines.length * 4.2;
         }
 
-        rowMaxHeight = Math.max(rowMaxHeight, ty - topY);
+        y = topY + Math.max(rowHeight, ty - topY) + rowGap;
 
-        if(col === cols - 1){
-          rowTopY += rowMaxHeight + rowGap;
-          rowMaxHeight = 0;
-          col = 0;
-        } else {
-          col++;
-        }
+        doc.setDrawColor(230,225,215);
+        doc.line(margin, y - rowGap/2, pageW - margin, y - rowGap/2);
       }
-      y = rowTopY;
 
       var blobOut = doc.output('blob');
       var fname = 'catalogo' + (state.activeCategory !== 'todos' ? '-' + state.activeCategory : '') + '.pdf';
