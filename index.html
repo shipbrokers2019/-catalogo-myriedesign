@@ -533,12 +533,15 @@
       </div>
       <div class="field">
         <label for="f_extraNombre">Variante adicional (opcional)</label>
-        <input type="text" id="f_extraNombre" maxlength="80" placeholder="Ej: Grabado parte posterior" />
+        <div class="name-row">
+          <input type="text" id="f_extraNombre" maxlength="80" placeholder="Ej: Grabado parte posterior" style="flex:1" />
+          <button type="button" class="mic-btn" id="btnMicExtra" title="Dictar variante adicional" aria-label="Dictar variante adicional">🎤</button>
+        </div>
       </div>
       <div class="field">
         <label for="f_extraPrecio">Precio adicional</label>
         <div class="price-row">
-          <input type="text" class="moneda" id="f_extraMoneda" maxlength="3" value="+$" aria-label="Símbolo precio adicional" />
+          <input type="text" class="moneda" id="f_extraMoneda" maxlength="3" value="$" aria-label="Símbolo precio adicional" />
           <input type="number" id="f_extraPrecio" min="0" step="0.01" placeholder="0.00" style="flex:1" />
         </div>
       </div>
@@ -934,7 +937,7 @@
         '<div class="card-body">' +
           '<div class="card-name">' + escapeHtml(p.nombre) + '</div>' +
           '<div class="card-price">' + formatPrice(p.precio, p.moneda) + '</div>' +
-          (p.extraNombre ? '<div class="card-desc">' + escapeHtml(p.extraNombre) + ' ' + escapeHtml(p.extraMoneda || '+$') + p.extraPrecio + '</div>' : '') +
+          (p.extraNombre ? '<div class="card-desc">' + escapeHtml(p.extraNombre) + ' ' + escapeHtml(p.extraMoneda || '$') + p.extraPrecio + '</div>' : '') +
           '<div class="card-footer">' +
             '<button type="button" class="icon-btn" data-edit="' + p.id + '" aria-label="Editar" title="Editar">✎</button>' +
             '<button type="button" class="icon-btn danger" data-del="' + p.id + '" aria-label="Eliminar" title="Eliminar">🗑</button>' +
@@ -994,7 +997,7 @@
     $('f_moneda').value = p.moneda || '$';
     $('f_precio').value = p.precio != null ? p.precio : '';
     $('f_extraNombre').value = p.extraNombre || '';
-    $('f_extraMoneda').value = p.extraMoneda || '+$';
+    $('f_extraMoneda').value = p.extraMoneda || '$';
     $('f_extraPrecio').value = p.extraPrecio != null ? p.extraPrecio : '';
     $('f_disponible').checked = p.disponible !== false;
     if(p.fotoUrl){
@@ -1040,7 +1043,7 @@
     var moneda = $('f_moneda').value.trim() || '$';
     var precio = parseFloat($('f_precio').value);
     var extraNombre = $('f_extraNombre').value.trim();
-    var extraMoneda = $('f_extraMoneda').value.trim() || '+$';
+    var extraMoneda = $('f_extraMoneda').value.trim() || '$';
     var extraPrecioRaw = $('f_extraPrecio').value;
     var extraPrecio = extraPrecioRaw === '' ? null : parseFloat(extraPrecioRaw);
     var disponible = $('f_disponible').checked;
@@ -1250,7 +1253,7 @@
 
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(14);
-        var extraText = p.extraNombre ? (p.extraNombre + ' ' + (p.extraMoneda || '+$') + p.extraPrecio) : '';
+        var extraText = p.extraNombre ? (p.extraNombre + ' ' + (p.extraMoneda || '$') + p.extraPrecio) : '';
         var extraLines = extraText ? doc.splitTextToSize(extraText, cellW) : [];
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(23);
@@ -1329,8 +1332,8 @@
   }
 
   // ---------- voice dictation ----------
-  function setupMicButton(){
-    var btn = $('btnMicNombre');
+  function setupMicButton(btnId, targetInputId){
+    var btn = $(btnId);
     var SpeechRecognitionCtor = window.SpeechRecognition || window.webkitSpeechRecognition;
     if(!SpeechRecognitionCtor){
       btn.hidden = true;
@@ -1345,7 +1348,7 @@
     recognition.onresult = function(e){
       var transcript = e.results[0][0].transcript;
       transcript = transcript.charAt(0).toUpperCase() + transcript.slice(1);
-      $('f_nombre').value = transcript;
+      $(targetInputId).value = transcript;
     };
     recognition.onerror = function(){
       showToast('No se pudo escuchar. Intenta de nuevo.');
@@ -1371,7 +1374,8 @@
     populateCategorySelect();
     renderFilters();
     renderStats();
-    setupMicButton();
+    setupMicButton('btnMicNombre', 'f_nombre');
+    setupMicButton('btnMicExtra', 'f_extraNombre');
 
     $('btnNewProduct').addEventListener('click', openNewForm);
     $('btnCancelForm').addEventListener('click', closeForm);
