@@ -407,9 +407,13 @@
   @keyframes toast-in{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
 
   @media (max-width:480px){
-    .overlay{align-items:flex-end; padding:0;}
+    .overlay{display:block; padding:0;}
     .modal{
+      position:fixed;
+      left:0; right:0; bottom:0;
       max-width:none;
+      width:auto;
+      margin:0;
       border-radius:var(--radius-l) var(--radius-l) 0 0;
       max-height:96vh;
       padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px));
