@@ -137,6 +137,13 @@
     border-color:var(--border);
     background:var(--surface);
   }
+  .brand-subtitle{
+    font-family:'Fraunces', Georgia, serif;
+    font-size:1.05rem;
+    font-weight:500;
+    color:var(--text-muted);
+    margin:-4px 0 0 2px;
+  }
   .stats-line{
     margin-top:6px;
     color:var(--text-muted);
@@ -460,7 +467,8 @@
   <div class="app-header">
     <div class="topbar">
       <div class="brand-block">
-        <input id="brandNameInput" class="brand-name-input" value="Myriedesign Catalogo" maxlength="60" aria-label="Nombre del catálogo" />
+        <input id="brandNameInput" class="brand-name-input" value="Myriedesign" maxlength="60" aria-label="Nombre del catálogo" />
+        <div class="brand-subtitle">Catálogo</div>
         <div class="stats-line" id="statsLine">Cargando catálogo…</div>
         <div class="contact-line" id="contactLine" hidden></div>
         <div id="fallbackBanner" class="fallback-banner" hidden>Guardando solo en este navegador — no se sincroniza en la nube</div>
@@ -503,8 +511,15 @@
         </div>
       </div>
       <div class="field">
-        <label for="f_descripcion">Descripción</label>
-        <textarea id="f_descripcion" maxlength="300"></textarea>
+        <label for="f_extraNombre">Variante adicional (opcional)</label>
+        <input type="text" id="f_extraNombre" maxlength="80" placeholder="Ej: Grabado parte posterior" />
+      </div>
+      <div class="field">
+        <label for="f_extraPrecio">Precio adicional</label>
+        <div class="price-row">
+          <span style="color:var(--text-muted); font-weight:600;">+</span>
+          <input type="number" id="f_extraPrecio" min="0" step="0.01" placeholder="0.00" style="flex:1" />
+        </div>
       </div>
       <div class="field">
         <label for="f_foto">Foto</label>
@@ -875,7 +890,7 @@
         '<div class="card-body">' +
           '<div class="card-name">' + escapeHtml(p.nombre) + '</div>' +
           '<div class="card-price">' + formatPrice(p.precio, p.moneda) + '</div>' +
-          (p.descripcion ? '<div class="card-desc">' + escapeHtml(p.descripcion) + '</div>' : '') +
+          (p.extraNombre ? '<div class="card-desc">' + escapeHtml(p.extraNombre) + ' +' + formatPrice(p.extraPrecio, p.moneda) + '</div>' : '') +
           '<div class="card-footer">' +
             '<button type="button" class="icon-btn" data-edit="' + p.id + '" aria-label="Editar" title="Editar">✎</button>' +
             '<button type="button" class="icon-btn danger" data-del="' + p.id + '" aria-label="Eliminar" title="Eliminar">🗑</button>' +
@@ -934,7 +949,8 @@
     $('f_categoria').value = p.categoria || CATEGORIES[0].key;
     $('f_moneda').value = p.moneda || '$';
     $('f_precio').value = p.precio != null ? p.precio : '';
-    $('f_descripcion').value = p.descripcion || '';
+    $('f_extraNombre').value = p.extraNombre || '';
+    $('f_extraPrecio').value = p.extraPrecio != null ? p.extraPrecio : '';
     $('f_disponible').checked = p.disponible !== false;
     if(p.fotoUrl){
       $('f_fotoPreviewImg').src = p.fotoUrl;
@@ -978,7 +994,9 @@
     var categoria = $('f_categoria').value;
     var moneda = $('f_moneda').value.trim() || '$';
     var precio = parseFloat($('f_precio').value);
-    var descripcion = $('f_descripcion').value.trim();
+    var extraNombre = $('f_extraNombre').value.trim();
+    var extraPrecioRaw = $('f_extraPrecio').value;
+    var extraPrecio = extraPrecioRaw === '' ? null : parseFloat(extraPrecioRaw);
     var disponible = $('f_disponible').checked;
 
     if(!nombre || isNaN(precio) || precio < 0){
@@ -1009,7 +1027,8 @@
         categoria: categoria,
         precio: precio,
         moneda: moneda,
-        descripcion: descripcion,
+        extraNombre: extraNombre,
+        extraPrecio: extraNombre ? (extraPrecio || 0) : null,
         disponible: disponible,
         fotoId: fotoId,
         fotoUrl: fotoUrl,
@@ -1114,9 +1133,9 @@
   }
   async function exportCsv(){
     if(!downloadsNS){ showToast('La exportación no está disponible aquí'); return; }
-    var rows = [['Nombre','Categoria','Precio','Moneda','Descripcion','Disponible']];
+    var rows = [['Nombre','Categoria','Precio','Moneda','Variante adicional','Precio adicional','Disponible']];
     visibleProducts().forEach(function(p){
-      rows.push([p.nombre, catLabel(p.categoria), p.precio, p.moneda || '$', p.descripcion || '', p.disponible === false ? 'No' : 'Si']);
+      rows.push([p.nombre, catLabel(p.categoria), p.precio, p.moneda || '$', p.extraNombre || '', p.extraNombre ? p.extraPrecio : '', p.disponible === false ? 'No' : 'Si']);
     });
     var csv = rows.map(function(r){ return r.map(csvEscape).join(','); }).join('\n');
     try{
@@ -1179,10 +1198,11 @@
         var textX = margin + imgSize + 6;
         var blockHeight = imgSize;
 
-        // estimate description height first
+        // estimate extra-variant line height first
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(9);
-        var descLines = p.descripcion ? doc.splitTextToSize(p.descripcion, pageW - margin - textX) : [];
+        var extraText = p.extraNombre ? (p.extraNombre + ' +' + formatPrice(p.extraPrecio, p.moneda)) : '';
+        var descLines = extraText ? doc.splitTextToSize(extraText, pageW - margin - textX) : [];
         var estHeight = Math.max(imgSize, 18 + descLines.length * 4);
 
         if(y + estHeight > pageH - margin){
