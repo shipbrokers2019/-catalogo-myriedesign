@@ -384,6 +384,24 @@
     width:100%;
   }
   .field textarea{resize:vertical; min-height:38px;}
+  .name-row{display:flex; gap:8px; align-items:center;}
+  .mic-btn{
+    width:38px; height:38px; flex:none;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:var(--surface-2);
+    color:var(--text-muted);
+    cursor:pointer;
+    font-size:1.05rem;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .mic-btn.listening{
+    background:var(--danger);
+    border-color:var(--danger);
+    color:#fff;
+    animation:mic-pulse 1s ease-in-out infinite;
+  }
+  @keyframes mic-pulse{0%,100%{opacity:1;} 50%{opacity:.55;}}
   .price-row{display:flex; gap:8px; align-items:center;}
   .price-row input[type=text].moneda{width:56px; text-align:center; flex:none;}
   .photo-row{display:flex; gap:12px; align-items:center;}
@@ -497,7 +515,10 @@
     <form id="productForm">
       <div class="field">
         <label for="f_nombre">Nombre</label>
-        <input type="text" id="f_nombre" maxlength="80" required />
+        <div class="name-row">
+          <input type="text" id="f_nombre" maxlength="80" required style="flex:1" />
+          <button type="button" class="mic-btn" id="btnMicNombre" title="Dictar nombre" aria-label="Dictar nombre">🎤</button>
+        </div>
       </div>
       <div class="field">
         <label for="f_categoria">Categoría</label>
@@ -1307,11 +1328,50 @@
     }
   }
 
+  // ---------- voice dictation ----------
+  function setupMicButton(){
+    var btn = $('btnMicNombre');
+    var SpeechRecognitionCtor = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if(!SpeechRecognitionCtor){
+      btn.hidden = true;
+      return;
+    }
+    var recognition = new SpeechRecognitionCtor();
+    recognition.lang = 'es-VE';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+    var listening = false;
+
+    recognition.onresult = function(e){
+      var transcript = e.results[0][0].transcript;
+      transcript = transcript.charAt(0).toUpperCase() + transcript.slice(1);
+      $('f_nombre').value = transcript;
+    };
+    recognition.onerror = function(){
+      showToast('No se pudo escuchar. Intenta de nuevo.');
+    };
+    recognition.onend = function(){
+      listening = false;
+      btn.classList.remove('listening');
+    };
+
+    btn.addEventListener('click', function(){
+      if(listening){
+        recognition.stop();
+        return;
+      }
+      listening = true;
+      btn.classList.add('listening');
+      try{ recognition.start(); }catch(e){ listening = false; btn.classList.remove('listening'); }
+    });
+  }
+
   // ---------- wire up ----------
   function init(){
     populateCategorySelect();
     renderFilters();
     renderStats();
+    setupMicButton();
 
     $('btnNewProduct').addEventListener('click', openNewForm);
     $('btnCancelForm').addEventListener('click', closeForm);
