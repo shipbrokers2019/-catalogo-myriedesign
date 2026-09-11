@@ -458,7 +458,7 @@
       justify-content:center;
       gap:3px;
     }
-    .card-desc{display:none;}
+    .card-desc{-webkit-line-clamp:1;}
     .card-footer{padding-top:2px;}
   }
 </style>
@@ -517,7 +517,7 @@
       <div class="field">
         <label for="f_extraPrecio">Precio adicional</label>
         <div class="price-row">
-          <span style="color:var(--text-muted); font-weight:600;">+</span>
+          <input type="text" class="moneda" id="f_extraMoneda" maxlength="3" value="+$" aria-label="Símbolo precio adicional" />
           <input type="number" id="f_extraPrecio" min="0" step="0.01" placeholder="0.00" style="flex:1" />
         </div>
       </div>
@@ -890,7 +890,7 @@
         '<div class="card-body">' +
           '<div class="card-name">' + escapeHtml(p.nombre) + '</div>' +
           '<div class="card-price">' + formatPrice(p.precio, p.moneda) + '</div>' +
-          (p.extraNombre ? '<div class="card-desc">' + escapeHtml(p.extraNombre) + ' +' + formatPrice(p.extraPrecio, p.moneda) + '</div>' : '') +
+          (p.extraNombre ? '<div class="card-desc">' + escapeHtml(p.extraNombre) + ' ' + escapeHtml(p.extraMoneda || '+$') + p.extraPrecio + '</div>' : '') +
           '<div class="card-footer">' +
             '<button type="button" class="icon-btn" data-edit="' + p.id + '" aria-label="Editar" title="Editar">✎</button>' +
             '<button type="button" class="icon-btn danger" data-del="' + p.id + '" aria-label="Eliminar" title="Eliminar">🗑</button>' +
@@ -950,6 +950,7 @@
     $('f_moneda').value = p.moneda || '$';
     $('f_precio').value = p.precio != null ? p.precio : '';
     $('f_extraNombre').value = p.extraNombre || '';
+    $('f_extraMoneda').value = p.extraMoneda || '+$';
     $('f_extraPrecio').value = p.extraPrecio != null ? p.extraPrecio : '';
     $('f_disponible').checked = p.disponible !== false;
     if(p.fotoUrl){
@@ -995,6 +996,7 @@
     var moneda = $('f_moneda').value.trim() || '$';
     var precio = parseFloat($('f_precio').value);
     var extraNombre = $('f_extraNombre').value.trim();
+    var extraMoneda = $('f_extraMoneda').value.trim() || '+$';
     var extraPrecioRaw = $('f_extraPrecio').value;
     var extraPrecio = extraPrecioRaw === '' ? null : parseFloat(extraPrecioRaw);
     var disponible = $('f_disponible').checked;
@@ -1028,6 +1030,7 @@
         precio: precio,
         moneda: moneda,
         extraNombre: extraNombre,
+        extraMoneda: extraNombre ? extraMoneda : null,
         extraPrecio: extraNombre ? (extraPrecio || 0) : null,
         disponible: disponible,
         fotoId: fotoId,
@@ -1201,7 +1204,7 @@
         // estimate extra-variant line height first
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(9);
-        var extraText = p.extraNombre ? (p.extraNombre + ' +' + formatPrice(p.extraPrecio, p.moneda)) : '';
+        var extraText = p.extraNombre ? (p.extraNombre + ' ' + (p.extraMoneda || '+$') + p.extraPrecio) : '';
         var descLines = extraText ? doc.splitTextToSize(extraText, pageW - margin - textX) : [];
         var estHeight = Math.max(imgSize, 18 + descLines.length * 4);
 
