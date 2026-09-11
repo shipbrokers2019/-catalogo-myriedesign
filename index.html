@@ -449,7 +449,7 @@
   <div class="app-header">
     <div class="topbar">
       <div class="brand-block">
-        <input id="brandNameInput" class="brand-name-input" value="Mi Catálogo" maxlength="60" aria-label="Nombre del catálogo" />
+        <input id="brandNameInput" class="brand-name-input" value="Myriedesign Catalogo" maxlength="60" aria-label="Nombre del catálogo" />
         <div class="stats-line" id="statsLine">Cargando catálogo…</div>
         <div class="contact-line" id="contactLine" hidden></div>
         <div id="fallbackBanner" class="fallback-banner" hidden>Guardando solo en este navegador — no se sincroniza en la nube</div>
@@ -550,17 +550,17 @@
   "use strict";
 
   var CATEGORIES = [
+    {key:'personalizados', label:'Personalizados'},
+    {key:'grabados', label:'Grabados'},
     {key:'cadenas', label:'Cadenas'},
     {key:'pulseras', label:'Pulseras'},
-    {key:'grabados', label:'Grabados'},
-    {key:'personalizados', label:'Personalizados'},
     {key:'rosarios', label:'Rosarios'}
   ];
   var CAT_HEX_LIGHT = {cadenas:'#9C7A3C', pulseras:'#A3607A', grabados:'#4F708A', personalizados:'#5C7F58', rosarios:'#74557C'};
 
   var state = {
     products: [],
-    settings: {nombre:'Mi Catálogo'},
+    settings: {nombre:'Myriedesign Catalogo'},
     activeCategory: 'todos',
     editingId: null,
     pendingPhotoBlob: null,
@@ -676,8 +676,8 @@
       state.usingLocalFallback = true;
       $('fallbackBanner').hidden = false;
       state.products = safeLocalRead(LOCAL_PRODUCTS_KEY, []);
-      state.settings = safeLocalRead(LOCAL_SETTINGS_KEY, {nombre:'Mi Catálogo'});
-      $('brandNameInput').value = state.settings.nombre || 'Mi Catálogo';
+      state.settings = safeLocalRead(LOCAL_SETTINGS_KEY, {nombre:'Myriedesign Catalogo'});
+      $('brandNameInput').value = state.settings.nombre || 'Myriedesign Catalogo';
       renderContactLine();
       renderAll();
     }
@@ -727,7 +727,7 @@
           var d = Object.assign({}, snap.data());
           state.settings = d;
           if(document.activeElement !== $('brandNameInput')){
-            $('brandNameInput').value = d.nombre || 'Mi Catálogo';
+            $('brandNameInput').value = d.nombre || 'Myriedesign Catalogo';
           }
           renderContactLine();
         }
@@ -1255,7 +1255,7 @@
     $('btnConfirmDelete').addEventListener('click', confirmDelete);
 
     $('brandNameInput').addEventListener('change', function(){
-      saveSettings($('brandNameInput').value.trim() || 'Mi Catálogo');
+      saveSettings($('brandNameInput').value.trim() || 'Myriedesign Catalogo');
     });
 
     $('btnExportCsv').addEventListener('click', exportCsv);
