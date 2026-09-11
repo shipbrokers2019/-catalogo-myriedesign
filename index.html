@@ -352,38 +352,38 @@
     border-radius:var(--radius-l);
     max-width:480px;
     width:100%;
-    max-height:92vh;
+    max-height:96vh;
     overflow-y:auto;
     scrollbar-width:none;
-    padding:24px;
+    padding:16px 20px;
     box-shadow:var(--shadow);
   }
   .modal::-webkit-scrollbar{display:none;}
   .modal-small{max-width:380px;}
-  .modal h2{font-size:1.3rem; margin-bottom:16px;}
-  .field{margin-bottom:10px; display:flex; flex-direction:column; gap:5px;}
-  .field label{font-size:.82rem; font-weight:600; color:var(--text-muted);}
+  .modal h2{font-size:1.15rem; margin-bottom:10px;}
+  .field{margin-bottom:7px; display:flex; flex-direction:column; gap:3px;}
+  .field label{font-size:.78rem; font-weight:600; color:var(--text-muted);}
   .field input[type=text], .field input[type=number], .field select, .field textarea{
     border:1px solid var(--border);
     border-radius:var(--radius-s);
-    padding:9px 11px;
+    padding:7px 10px;
     background:var(--surface-2);
     color:var(--text);
     width:100%;
   }
-  .field textarea{resize:vertical; min-height:64px;}
+  .field textarea{resize:vertical; min-height:38px;}
   .price-row{display:flex; gap:8px; align-items:center;}
   .price-row input[type=text].moneda{width:56px; text-align:center; flex:none;}
   .photo-row{display:flex; gap:12px; align-items:center;}
   .photo-preview{
-    width:72px; height:72px; border-radius:var(--radius-s);
+    width:52px; height:52px; border-radius:var(--radius-s);
     background:var(--surface-2); border:1px solid var(--border);
     object-fit:cover; flex:none;
   }
   .photo-preview.empty-ph{display:flex; align-items:center; justify-content:center; color:var(--text-muted); font-size:1.4rem;}
   .checkbox-row{display:flex; align-items:center; gap:8px;}
   .checkbox-row input{width:16px; height:16px;}
-  .modal-actions{display:flex; justify-content:flex-end; gap:8px; margin-top:18px;}
+  .modal-actions{display:flex; justify-content:flex-end; gap:8px; margin-top:10px;}
   .field-error{font-size:.78rem; color:var(--danger);}
 
   /* ---------- toast ---------- */
@@ -406,8 +406,8 @@
     .modal{
       max-width:none;
       border-radius:var(--radius-l) var(--radius-l) 0 0;
-      max-height:85vh;
-      padding-bottom:calc(24px + env(safe-area-inset-bottom, 0px));
+      max-height:96vh;
+      padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px));
       animation:sheet-up .2s ease;
     }
     @keyframes sheet-up{from{transform:translateY(24px); opacity:.6;} to{transform:translateY(0); opacity:1;}}
