@@ -83,6 +83,12 @@
     font-family:'Work Sans', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing:antialiased;
   }
+  body.modal-open{
+    overflow:hidden;
+    position:fixed;
+    inset:0;
+    width:100%;
+  }
   h1,h2,h3{font-family:'Fraunces', Georgia, serif; text-wrap:balance; margin:0;}
   button{font-family:inherit;}
   input,select,textarea{font-family:inherit; font-size:inherit; color:inherit;}
@@ -884,6 +890,18 @@
     }).join('');
   }
 
+  var scrollLockY = 0;
+  function lockScroll(){
+    scrollLockY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.top = (-scrollLockY) + 'px';
+    document.body.classList.add('modal-open');
+  }
+  function unlockScroll(){
+    document.body.classList.remove('modal-open');
+    document.body.style.top = '';
+    window.scrollTo(0, scrollLockY);
+  }
+
   function openNewForm(){
     state.editingId = null;
     state.pendingPhotoBlob = null;
@@ -897,6 +915,7 @@
     $('f_fotoPreviewEmpty').hidden = false;
     $('formError').hidden = true;
     $('formOverlay').hidden = false;
+    lockScroll();
     $('f_nombre').focus();
   }
 
@@ -925,11 +944,13 @@
     $('f_foto').value = '';
     $('formError').hidden = true;
     $('formOverlay').hidden = false;
+    lockScroll();
     $('f_nombre').focus();
   }
 
   function closeForm(){
     $('formOverlay').hidden = true;
+    unlockScroll();
   }
 
   async function handlePhotoChange(e){
@@ -1036,9 +1057,11 @@
     state.deleteTargetId = id;
     $('delName').textContent = p.nombre;
     $('deleteOverlay').hidden = false;
+    lockScroll();
   }
   function closeDeleteConfirm(){
     $('deleteOverlay').hidden = true;
+    unlockScroll();
     state.deleteTargetId = null;
   }
   async function confirmDelete(){
