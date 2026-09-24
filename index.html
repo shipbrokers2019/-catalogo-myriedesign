@@ -1599,13 +1599,27 @@
             y += 5;
           }
 
-          // Each product on its own full-bleed page — photo covers the entire
-          // sheet, price/description overlaid on a dark bar at the bottom.
-          var targetAspect = pageW / pageH;
-
+          // Each product on its own page — photo shown whole (no crop, no
+          // distortion), price/description in plain text below it.
           for (var i = 0; i < list.length; i++) {
             var p = list[i];
             doc.addPage();
+
+            doc.setFillColor(255, 255, 255);
+            doc.rect(0, 0, pageW, pageH, 'F');
+
+            var extraText = p.extraNombre ? (p.extraNombre + ' ' + (p.extraMoneda || '$') + p.extraPrecio) : '';
+            var innerW = pageW - margin * 2;
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(12);
+            var extraLines = extraText ? doc.splitTextToSize(extraText, innerW) : [];
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(20);
+            var nameLines = doc.splitTextToSize(p.nombre || '', innerW);
+
+            var textPad = 8;
+            var textH = textPad + nameLines.length * 8 + 7 + 9 + (extraLines.length ? extraLines.length * 5.5 + 2 : 0);
+            var imgAreaH = pageH - textH;
 
             if (p.fotoUrl) {
               try {
@@ -1617,62 +1631,39 @@
                   var blob = await resp.blob();
                   dataUrl = await blobToDataURL(blob);
                 }
-                var croppedUrl = await cropDataUrlToAspect(dataUrl, targetAspect);
-                doc.addImage(croppedUrl, 'JPEG', 0, 0, pageW, pageH, undefined, 'FAST');
-              } catch (e) {
-                doc.setFillColor(246, 243, 236);
-                doc.rect(0, 0, pageW, pageH, 'F');
-              }
-            } else {
-              doc.setFillColor(246, 243, 236);
-              doc.rect(0, 0, pageW, pageH, 'F');
+                var dims = await getImageDims(dataUrl);
+                var scale = Math.min(pageW / dims.w, imgAreaH / dims.h);
+                var drawW = dims.w * scale;
+                var drawH = dims.h * scale;
+                var offX = (pageW - drawW) / 2;
+                var offY = (imgAreaH - drawH) / 2;
+                doc.addImage(dataUrl, 'JPEG', offX, offY, drawW, drawH, undefined, 'FAST');
+              } catch (e) { }
             }
 
-            var extraText = p.extraNombre ? (p.extraNombre + ' ' + (p.extraMoneda || '$') + p.extraPrecio) : '';
-            var innerW = pageW - margin * 2;
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(12);
-            var extraLines = extraText ? doc.splitTextToSize(extraText, innerW) : [];
+            var ty = imgAreaH + textPad + 6;
             doc.setFont('helvetica', 'bold');
             doc.setFontSize(20);
-            var nameLines = doc.splitTextToSize(p.nombre || '', innerW);
-
-            var barPad = 8;
-            var barH = barPad * 2 + nameLines.length * 8 + 7 + 9 + (extraLines.length ? extraLines.length * 5.5 + 2 : 0);
-            var barY = pageH - barH;
-
-            doc.setFillColor(20, 17, 14);
-            doc.setDrawColor(20, 17, 14);
-            doc.rect(0, barY, pageW, barH, 'F');
-            // subtle transparency simulated with a lighter overlay on top
-            doc.setGState(new doc.GState({ opacity: 0.72 }));
-            doc.setFillColor(0, 0, 0);
-            doc.rect(0, barY, pageW, barH, 'F');
-            doc.setGState(new doc.GState({ opacity: 1 }));
-
-            var ty = barY + barPad + 6;
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(20);
-            doc.setTextColor(255, 255, 255);
+            doc.setTextColor(30, 26, 24);
             doc.text(nameLines, margin, ty);
             ty += nameLines.length * 8;
 
             doc.setFont('helvetica', 'normal');
             doc.setFontSize(11);
-            doc.setTextColor(230, 210, 170);
+            doc.setTextColor(140, 110, 60);
             doc.text(catLabel(p.categoria), margin, ty);
             ty += 7;
 
             doc.setFont('helvetica', 'bold');
             doc.setFontSize(20);
-            doc.setTextColor(255, 255, 255);
+            doc.setTextColor(30, 26, 24);
             doc.text(formatPrice(p.precio, p.moneda), margin, ty);
             ty += 9;
 
             if (extraLines.length) {
               doc.setFont('helvetica', 'normal');
               doc.setFontSize(12);
-              doc.setTextColor(225, 220, 210);
+              doc.setTextColor(90, 82, 72);
               doc.text(extraLines, margin, ty);
               ty += extraLines.length * 5.5;
             }
