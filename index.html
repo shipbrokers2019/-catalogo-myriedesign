@@ -1590,7 +1590,7 @@
 
           // Categories whose cover photo already includes its own title/legend —
           // skip drawing any text overlay on top for these.
-          var COVERS_WITHOUT_OVERLAY = { grabados: true };
+          var COVERS_WITHOUT_OVERLAY = { grabados: true, personalizados: true };
 
           if (!COVERS_WITHOUT_OVERLAY[state.activeCategory]) {
             doc.setGState(new doc.GState({ opacity: 0.28 }));
