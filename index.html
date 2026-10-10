@@ -1639,14 +1639,14 @@
             var extraText = p.extraNombre ? (p.extraNombre + ' ' + (p.extraMoneda || '$') + p.extraPrecio) : '';
             var innerW = pageW - margin * 2;
             doc.setFont('helvetica', 'normal');
-            doc.setFontSize(12);
+            doc.setFontSize(18);
             var extraLines = extraText ? doc.splitTextToSize(extraText, innerW) : [];
             doc.setFont('helvetica', 'bold');
             doc.setFontSize(20);
             var nameLines = doc.splitTextToSize(p.nombre || '', innerW);
 
             var textPad = 8;
-            var textH = textPad + nameLines.length * 8 + 7 + 9 + (extraLines.length ? extraLines.length * 5.5 + 2 : 0);
+            var textH = textPad + nameLines.length * 8 + 7 + 9 + (extraLines.length ? extraLines.length * 8 + 2 : 0);
             var imgAreaH = pageH - textH;
 
             if (p.fotoUrl) {
@@ -1689,11 +1689,11 @@
             ty += 9;
 
             if (extraLines.length) {
-              doc.setFont('helvetica', 'normal');
-              doc.setFontSize(12);
-              doc.setTextColor(90, 82, 72);
+              doc.setFont('helvetica', 'bold');
+              doc.setFontSize(18);
+              doc.setTextColor(30, 26, 24);
               doc.text(extraLines, margin, ty);
-              ty += extraLines.length * 5.5;
+              ty += extraLines.length * 8;
             }
           }
 
