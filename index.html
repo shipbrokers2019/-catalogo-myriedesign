@@ -1578,7 +1578,7 @@
           // Cover page: full-bleed photo, brand name at top, "Catálogo <categoría>" centered.
           // Uses a category-specific cover photo when available (cover-<categoria>.jpg), else cover.jpg.
           try {
-            var coverFile = state.activeCategory !== 'todos' ? ('cover-' + state.activeCategory + '.jpg') : 'cover-personalizados.jpg';
+            var coverFile = state.activeCategory !== 'todos' ? ('cover-' + state.activeCategory + '.jpg') : 'cover.jpg';
             var coverResp = await fetch(coverFile);
             if (!coverResp.ok) coverResp = await fetch('cover.jpg');
             var coverBlob = await coverResp.blob();
