@@ -846,6 +846,8 @@
           <div id="loadErrorBanner" class="fallback-banner" hidden></div>
         </div>
         <div class="topbar-actions">
+          <button class="btn btn-primary btn-icon" id="btnInstallApp" title="Instalar esta app en el celular"
+            aria-label="Instalar app" hidden>📲 Instalar</button>
           <button class="btn btn-ghost btn-icon" id="btnExportCsv" title="Exportar lista a CSV"
             aria-label="Exportar CSV">⤓ CSV</button>
           <button class="btn btn-ghost btn-icon" id="btnExportPdf" title="Descargar catálogo en PDF"
@@ -1791,6 +1793,26 @@
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js').catch(function () { });
       }
+
+      // ---------- install prompt ----------
+      var deferredInstallPrompt = null;
+      window.addEventListener('beforeinstallprompt', function (e) {
+        e.preventDefault();
+        deferredInstallPrompt = e;
+        $('btnInstallApp').hidden = false;
+      });
+      window.addEventListener('appinstalled', function () {
+        deferredInstallPrompt = null;
+        $('btnInstallApp').hidden = true;
+        showToast('App instalada');
+      });
+      $('btnInstallApp').addEventListener('click', async function () {
+        if (!deferredInstallPrompt) return;
+        deferredInstallPrompt.prompt();
+        await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt = null;
+        $('btnInstallApp').hidden = true;
+      });
     })();
   </script>
 
